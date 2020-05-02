@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//algorithm adapted from the nfdh algorithm described at: https://cgi.csc.liv.ac.uk/~epa/surveyhtml.html#bib.1
+
 struct minheap_struct{  //min_heap structure is used to implement heap sort
     int *nodes; //stores the nodes in the min_heap. the 0th element in the array should be a sentinel node
     int size;   //stores the number of nodes in the heap
