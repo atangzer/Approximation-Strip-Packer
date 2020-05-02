@@ -60,8 +60,8 @@ int main(){
     for(int i=0;i<num_images;i++)   printf("(%d, %d)\n", x_pos[i], y_pos[i]);   //output the (x,y) coordinates of the images in the texture atlas
 
     clock_t end = clock(); //Time at end
-    double elapsed_time = ((double)(end - begin) / CLOCKS_PER_SEC) * 1000000000; //Time taken = time at beginning - time at end; Multiply by 10^9 to get nanoseconds
-    printf("\nTime taken by program was %f nanoseconds\n", elapsed_time);
+    double elapsed_time = ((double)(end - begin) / CLOCKS_PER_SEC) * 1000; //Time taken = time at beginning - time at end; Multiply by 10^3 to get milliseconds
+    printf("\nTime taken by program was %f milliseconds\n", elapsed_time);
 
     return 0;   //end of program, return 1, no errors
 }
