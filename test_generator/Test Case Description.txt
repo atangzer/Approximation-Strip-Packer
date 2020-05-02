@@ -1,0 +1,27 @@
+# Input/Output Specification
+
+
+## Input Specification
+
+The program first receives, in one line, two positive integers **W** and **N**, where **W** is the width of the texture atlas that the images will be packed into and **N** is the number of images to be packed.
+
+The program then receives *N* lines of input. Each line specifies an images and contains two positive integers **h** and **w**, the pixel height and width of the image, respectively.
+
+## Output Specification
+
+The program outputs **N** lines, specifying the positions of the images in the texture atlas.
+Each line contains two non-negative integers **x** and **y**, the x and y position of the bottom left pixel of the image in the texture atlas, respectively.
+The positions are output in the same order as the input sizes are input; that is, the i-th position in output corresponds to the i-th image in input.
+
+Basic test case:
+10 10
+5 4
+1 1
+2 3
+6 1
+9 2
+3 1
+2 2
+4 2
+3 5
+1 8
