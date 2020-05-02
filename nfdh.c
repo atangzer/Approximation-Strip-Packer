@@ -21,7 +21,6 @@ int isEmpty(minheap h); //checks if the heap h is empty. returns 1 if true, 0 if
 void nfdhPack(int* images);   //packs images in the order given by the parameter images. writes the position of images in the NFDH packing to x_pos, y_pos
 
 int main(){
-    texture_width, num_images;
     scanf("%d %d", &texture_width, &num_images);
 
     image_height=(int*)malloc(sizeof(int)*num_images);  //stores the heights of image
@@ -48,11 +47,6 @@ int main(){
 
     free(h);    //deallocates h as it is no longer needed
 
-/*    for(int i=0;i<num_images;i++)   printf("%d ", image_height[sortedImages[i]]);  
-    printf("\n");
-    for(int i=0;i<num_images;i++)   printf("%d ", image_width[sortedImages[i]]);  
-    printf("\n");
-*/
     nfdhPack(sortedImages);  //calls the 2d packing algorithm
 
     for(int i=0;i<num_images;i++)   printf("(%d, %d)\n", x_pos[i], y_pos[i]);
@@ -88,7 +82,7 @@ void nfdhPack(int* images){
     return;
 }
 
-int* sort(minheap h){     //takes as arguements a minheap h  
+int* sort(minheap h){     //takes as arguements a minheap h to be sorted 
     while(!isEmpty(h))  pop(h);    //pops elements until there are none left
     return h->nodes+1;  //when the heap is empty, the array of elements in the heap will be in decreasing order. the 0th node is a sentinel. therefore, we return h->nodes[1:]
 }
@@ -118,7 +112,7 @@ minheap buildheap(){
     return h;   //return the built heap
 }
 
-int pop(minheap h){   //takes as arguements a heap h to be popped from and the array of image heights which is needed to maintain the heap order
+int pop(minheap h){   //takes as arguements a heap h to be popped from
     
     int temp=h->nodes[h->size]; //saves the last item in the heap
     h->nodes[h->size]=h->nodes[1];  //moves the item at the top of the heap to the former last position in the array which will now be outside of the heap
