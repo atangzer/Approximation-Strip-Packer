@@ -10,4 +10,6 @@ The program then receives *N* lines of input. Each line specifies an images and 
 
 ## Output Specification
 
-The program outputs **N** lines, specifying the positions of the images in the texture atlas. Each line contains two non-negative integers **x** and **y**, the x and y position of the bottom left pixel of the image in the texture atlas, respectively. The positions are output in the same order as the input sizes are input; that is, the i-th position in output corresponds to the i-th image in input.
+The program outputs **N** lines, specifying the positions of the images in the texture atlas. Each line contains two non-negative integers **x** and **y**, the x and y position of the bottom left pixel of the image in the texture atlas, respectively. The positions are output in the same order as the input sizes are input; that is, the i-th position in output corresponds to the i-th image in input. 
+
+If the input width **w** of one or more of the images is less than 1, or greater than the texture atlas width **W**, "Invalid Input" is output and the program terminates.
