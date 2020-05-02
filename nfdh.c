@@ -15,12 +15,12 @@ int texture_width, num_images;  //texture_width stores the given width of the te
 int *image_height, *image_width, *x_pos, *y_pos;    //image_height and image_width store the heights and widths of the images, respectively
                                                     //x_pos and y_pos store the x and y coordinates, respectively, of the bottom left pixel in the image
 
-minheap buildheap(); //O(N) algorithm to build a heap from the input, returns a heap
+minheap buildheap(); //O(N) algorithm to build a min heap from the images according to their heights, returns a heap
 int pop(minheap h);   //removes the top item from the heap h, maintains the heap structure, and returns the removed item
 int* sort(minheap h); //iterativey pops items from the heap h until it is empty, returns an array containing the items in decreasing order of their heights
 int isEmpty(minheap h); //checks if the heap h is empty. returns 1 if true, 0 if false
 
-void nfdhPack(int* images);   //packs images in the order given by the parameter images. writes the position of images in the NFDH packing to x_pos, y_pos
+int nfdhPack(int* images);   //packs images in the order given by the parameter images. writes the position of images in the NFDH packing to x_pos, y_pos, returns the height of the packing
 
 int main(){
     scanf("%d %d", &texture_width, &num_images);
@@ -49,14 +49,15 @@ int main(){
 
     free(h);    //deallocates h as it is no longer needed
 
-    nfdhPack(sortedImages);  //calls the 2d packing algorithm
+    int area=texture_width*nfdhPack(sortedImages);  //calls the 2d packing algorithm
 
-    for(int i=0;i<num_images;i++)   printf("(%d, %d)\n", x_pos[i], y_pos[i]);
-
+    printf("area=%d\n",area);
+    for(int i=0;i<num_images;i++)   printf("(%d, %d)\n", x_pos[i], y_pos[i]);   //output the (x,y) coordinates of the images in the texture atlas
+    
     return 0;   //end of program, return 1, no errors
 }
 
-void nfdhPack(int* images){
+int nfdhPack(int* images){
     int* lvl_height=(int*)calloc(sizeof(int), num_images);    //stores the height of each level. an empty level has height 0
     int* used_width=(int*)calloc(sizeof(int), num_images);    //stores the width of space already occupied in each level. and empty level has 0 width.
 
@@ -81,7 +82,8 @@ void nfdhPack(int* images){
             y_pos[current_image]=current_y;     //set the y position of the current image to be the y position of the current level
             used_width[current_lvl]+=image_width[current_image];     //update the amount of width already used in the current level by adding the width of the current image
     }
-    return;
+    current_y+=lvl_height[current_lvl];     //calculates the total height of the packing
+    return current_y;   //returns the total height of the packing
 }
 
 int* sort(minheap h){     //takes as arguements a minheap h to be sorted 

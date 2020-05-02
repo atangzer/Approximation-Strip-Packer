@@ -4,15 +4,17 @@
 
 ## Input Specification
 
-The program first receives, in one line, two positive integers **W** and **N**, in that order, where **W** is the width of the texture atlas that the images will be packed into and **N** is the number of images to be packed.
+​	The program first receives, in one line, two positive integers **W** and **N**, in that order, where **W** is the width of the texture atlas that the images will be packed into and **N** is the number of images to be packed.
 
-The program then receives *N* lines of input. Each line specifies an images and contains two positive integers **w** and **h**, in that order, specifying the pixel width and height of the image, respectively.
+​	The program then receives *N* lines of input. Each line specifies an images and contains two positive integers **w** and **h**, in that order, specifying the pixel width and height of the image, respectively.
 
 ## Output Specification
 
-The program outputs **N** lines, specifying the positions of the images in the texture atlas. Each line contains an ordered pair of non-negative integers **x** and **y**, in that order, specifying the x and y position of the bottom left pixel of the image in the texture atlas, respectively. The positions are output in the same order as the input sizes are input; that is, the i-th position in output corresponds to the i-th image in input. 
+​	The program first outputs the total area used by the packing.
 
-If the input width **w** of one or more of the images is less than 1, or greater than the texture atlas width **W**, "Invalid Input" is output and the program terminates.
+​	The program then outputs **N** lines, specifying the positions of the images in the texture atlas. Each line contains an ordered pair of non-negative integers **x** and **y**, in that order, specifying the x and y position of the bottom left pixel of the image in the texture atlas, respectively. The positions are output in the same order as the input sizes are input; that is, the i-th position in output corresponds to the i-th image in input. 
+
+​	If the input width **w** of one or more of the images is less than 1, or greater than the texture atlas width **W**, "Invalid Input" is output and the program terminates.
 
 ## Examples
 
@@ -31,6 +33,8 @@ If the input width **w** of one or more of the images is less than 1, or greater
 8 1
 
 **Output 0:**
+
+area=130
 
 (3, 0)
 (8, 12)
@@ -65,6 +69,8 @@ If the input width **w** of one or more of the images is less than 1, or greater
 7 18
 
 **Output 1:**
+
+area=1375
 
 (5, 39)
 (10, 25)

@@ -12,6 +12,7 @@ input:
 8 1
 
 expected output:
+area=130
 (3, 0)
 (8, 12)
 (7, 9)

@@ -19,6 +19,7 @@ input:
 7 18
 
 expected output:
+area=1375
 (5, 39)
 (10, 25)
 (15, 0)
