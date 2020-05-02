@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 //algorithm adapted from the nfdh algorithm described at: https://cgi.csc.liv.ac.uk/~epa/surveyhtml.html#bib.1
 
@@ -23,7 +24,10 @@ int isEmpty(minheap h); //checks if the heap h is empty. returns 1 if true, 0 if
 int nfdhPack(int* images);   //packs images in the order given by the parameter images. writes the position of images in the NFDH packing to x_pos, y_pos, returns the height of the packing
 
 int main(){
+    printf("Input:\n");
     scanf("%d %d", &texture_width, &num_images);
+
+    clock_t begin = clock(); //Time at beginning (after the scanf)
 
     image_height=(int*)malloc(sizeof(int)*num_images);  //stores the heights of image
     image_width=(int*)malloc(sizeof(int)*num_images);   //stores the widths of the image
@@ -51,9 +55,14 @@ int main(){
 
     int area=texture_width*nfdhPack(sortedImages);  //calls the 2d packing algorithm
 
+    printf("\nOutput:\n");
     printf("area=%d\n",area);
     for(int i=0;i<num_images;i++)   printf("(%d, %d)\n", x_pos[i], y_pos[i]);   //output the (x,y) coordinates of the images in the texture atlas
-    
+
+    clock_t end = clock(); //Time at end
+    double elapsed_time = ((double)(end - begin) / CLOCKS_PER_SEC) * 1000000000; //Time taken = time at beginning - time at end; Multiply by 10^9 to get nanoseconds
+    printf("\nTime taken by program was %f nanoseconds\n", elapsed_time);
+
     return 0;   //end of program, return 1, no errors
 }
 
@@ -86,7 +95,7 @@ int nfdhPack(int* images){
     return current_y;   //returns the total height of the packing
 }
 
-int* sort(minheap h){     //takes as arguements a minheap h to be sorted 
+int* sort(minheap h){     //takes as arguements a minheap h to be sorted
     while(!isEmpty(h))  pop(h);    //pops elements until there are none left
     return h->nodes+1;  //when the heap is empty, the array of elements in the heap will be in decreasing order. the 0th node is a sentinel. therefore, we return h->nodes[1:]
 }
@@ -117,7 +126,7 @@ minheap buildheap(){
 }
 
 int pop(minheap h){   //takes as arguements a heap h to be popped from
-    
+
     int temp=h->nodes[h->size]; //saves the last item in the heap
     h->nodes[h->size]=h->nodes[1];  //moves the item at the top of the heap to the former last position in the array which will now be outside of the heap
     h->size--;  //decreases the heap size, excluding the last position in the array from the heap
