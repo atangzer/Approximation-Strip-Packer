@@ -10,33 +10,39 @@
 
 def main():
 
-    # Make sure only 1 of the funcs is ran at once, manually comment out the rest
-    testcases = 9
+    # Make sure only 1 of the funcs is ran at once
+    testcases = 12
     print("The possible generated test cases:")
-    print("1) Random Case (n=100)")
-    print("2) Diagonal Case (n=1000)")
-    print("3) Mismatched Diagonal Case (n=1000)")
-    print("4) Best Case (n=10)")
-    print("5) Worst Case (n=10000)")
-    print("6) All Pairs Case (n=1000)")
-    print("7) Filled (No Gaps) Case (n=60)")
-    print("8) Filled (With Gaps) Case (n=20)")
-    print("9) Trivial Case (n=100)")
+    print("1) Random Case 500 Items (n=500)")
+    print("2) Random Case 5k Items (n=5000)")
+    print("3) Random Case 7k Items (n=7000)")
+    print("4) Random Case 9k Items (n=9000)")
+    print("5) Diagonal Case (n=3000)")
+    print("6) Mismatched Diagonal Case (n=4000)")
+    print("7) Best Case (n=10)")
+    print("8) Worst Case (n=10000)")
+    print("9) All Pairs Case (n=1000)")
+    print("10) Filled (No Gaps) Case (n=60)")
+    print("11) Filled (With Gaps) Case (n=20)")
+    print("12) Trivial Case (n=100)")
 
     test = int(input("Please choose a test case number: "))
     assert test > 0 and test <= testcases, "Please enter an existing test case" #Throws AssertionError if bad choice
 
 
     switcher = {  # Map of generating functions
-        1: random_case,
-        2: diagonal_case,
-        3: mismatched_diag_case,
-        4: best_case,
-        5: worst_case,
-        6: allpairs_case,
-        7: filled_nogaps_case,
-        8: filled_withgaps_case,
-        9: trivial_case,
+        1: random_case_500,
+        2: random_case_5k,
+        3: random_case_7k,
+        4: random_case_9k,
+        5: diagonal_case,
+        6: mismatched_diag_case,
+        7: best_case,
+        8: worst_case,
+        9: allpairs_case,
+        10: filled_nogaps_case,
+        11: filled_withgaps_case,
+        12: trivial_case,
     }
     generator = switcher.get(test) #Get the proper test generating function
     name = generator.__name__ #Name the output the same as the function name + .txt; This will overwrite existing test cases
@@ -69,7 +75,7 @@ def randomizer(lst): #void
 #f'{width} {height}'
 def diagonal_case(): #Largest item first, each item is smaller than the last (size=10000)
     res = []
-    n = 1000
+    n = 3000
     normal = n
     res.append(f'{normal} {n}')
 
@@ -122,7 +128,7 @@ def allpairs_case(): #All items are between 4 and 6 in width, no more than 2 ite
         res.append(f'5 {height}')
 
     #If completely optimal, would have no whitespace in bins;
-    #Would have exactly 3333 + (3334/2) = 5000 completely filled bins
+    #Would have exactly 333 + (334/2) = 500 completely filled bins
     return res
 
 
@@ -174,7 +180,7 @@ def filled_withgaps_case(): #Not quite completely filled squares, but no squares
 
 def mismatched_diag_case(): #Mismatched diagonals, including really long but short items, really tall but thin items, and everything in between
     res = []
-    n = 1000
+    n = 4000
     normal = n
     res.append(f'{normal} {n}')
 
@@ -184,10 +190,9 @@ def mismatched_diag_case(): #Mismatched diagonals, including really long but sho
     return res
 
 
-def random_case(): #really big, completely random case
+def random_case(n): #Completely random case, have other functions with no args call this with a size arg
     from random import randrange
     res = []
-    n = 100
     normal = n
     res.append(f'{normal} {n}')
 
@@ -209,6 +214,16 @@ def trivial_case(): #Every item is exactly the width of 1 bin, no whitespace
         res.append(f'{n} {n}') #width==height
 
     return res
+
+
+def random_case_500():
+    return random_case(500)
+def random_case_5k():
+    return random_case(5000)
+def random_case_7k():
+    return random_case(7000)
+def random_case_9k():
+    return random_case(9000)
 
 
 if (__name__ == '__main__'):
