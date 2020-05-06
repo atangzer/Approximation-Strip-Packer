@@ -8,6 +8,7 @@
 * Put down a sentence or two explaining why
 
 ## 3. Re-word algorithm specification (???)
+* Section 2 of nfdhPack()?
 
 ## 4. Draw out the rest of the test cases
 * @ the group who said....
@@ -17,4 +18,7 @@
 ## 5. Fix source code in appendix.
 * Use screenshots instead of direct copy & pasting... (Is this allowed??)
 
-## 6. I don't think we need anymore test cases.
+## 7. Slightly change output specifications
+* "Time taken" output, fix readme in code folder
+
+## 8. I don't think we need anymore test cases.
