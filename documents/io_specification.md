@@ -68,6 +68,8 @@ area=130
 12 5
 7 18
 
+Time taken by program was 1572.000000 milliseconds
+
 **Output 1:**
 
 area=1375
@@ -89,6 +91,8 @@ area=1375
 (0, 39)
 (8, 48)
 (8, 0)
+
+Time taken by program was 27.000000 milliseconds
 
 **Input 2:**
 
